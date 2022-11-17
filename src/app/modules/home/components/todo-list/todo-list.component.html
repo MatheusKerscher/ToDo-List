@@ -4,6 +4,7 @@
       <input type="checkbox" [(ngModel)]="task.checked" />
       <input
         type="text"
+        (keyup)="validationInput(task.task, i)"
         [(ngModel)]="task.task"
         [ngClass]="{ checked: task.checked }"
       />
@@ -14,7 +15,9 @@
   </ul>
 </section>
 
-<app-input-add-itens></app-input-add-itens>
+<app-input-add-itens
+  (emitItemTaskList)="addItemTaskList($event)"
+></app-input-add-itens>
 
 <app-button-delete-all
   *ngIf="taskList.length"
